@@ -2,7 +2,7 @@
 let mongoose    = require('mongoose'),
     PostsModel  = mongoose.model('Posts');
 
-let sendError = ((code, err) => {
+let sendError = ((res, code, err) => {
   if(err) return res.status(code).send(err.message);
 });
 
@@ -15,7 +15,7 @@ let sendResponse = ((res, code, data) => {
 //GET - Return all Posts in the DB
 exports.findAll = ((req, res) => {
     PostsModel.find((err, posts) => {
-      sendError(500, err);
+      sendError(res, 500, err);
 
       sendResponse(res, 200, posts);
     });
@@ -24,7 +24,7 @@ exports.findAll = ((req, res) => {
 //GET - Return Post
 exports.findById = ((req, res) => {
     PostsModel.findById(req.params.id, ((err, post) => {
-      sendError(500, err);
+      sendError(res, 500, err);
 
       // console.log(`GET /posts/${req.params.id}`);
       sendResponse(res, 200, post);
@@ -42,7 +42,7 @@ exports.add = ((req, res) => {
 
   // console.log(req.body);
   post.save(((err, post) => {
-    sendError(500, err);
+    sendError(res, 500, err);
 
     sendResponse(res, 200, post);
   }));
@@ -56,7 +56,7 @@ exports.update = ((req, res) => {
 		post.body = req.body.body;
 
 		post.save(((err) => {
-			sendError(500, err);
+			sendError(res, 500, err);
 
       sendResponse(res, 200, post);
 		}));
@@ -66,7 +66,7 @@ exports.update = ((req, res) => {
 //DELETE - Delete a Post with specified ID
 exports.delete = ((req, res) => {
 	PostsModel.findByIdAndRemove(req.params.id, ((err, post) => {
-		sendError(500, err);
+		sendError(res, 500, err);
 
     if (null == post) {
       return sendResponse(res, 404, post);
