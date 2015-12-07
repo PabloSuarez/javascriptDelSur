@@ -6,13 +6,18 @@ let sendError = ((code, err) => {
   if(err) return res.status(code).send(err.message);
 });
 
+let sendResponse = ((res, code, data) => {
+  let path = `${res.req.originalMethod}  ${res.req.originalUrl}`;
+  console.log(`${path}    ${code}`);
+  res.status(code).jsonp(data);
+});
+
 //GET - Return all Posts in the DB
 exports.findAll = ((req, res) => {
     PostsModel.find((err, posts) => {
       sendError(500, err);
 
-      console.log(`GET /posts`);
-      res.status(200).jsonp(posts);
+      sendResponse(res, 200, posts);
     });
 });
 
@@ -21,8 +26,8 @@ exports.findById = ((req, res) => {
     PostsModel.findById(req.params.id, ((err, post) => {
       sendError(500, err);
 
-      console.log(`GET /posts/${req.params.id}`);
-      res.status(200).jsonp(post);
+      // console.log(`GET /posts/${req.params.id}`);
+      sendResponse(res, 200, post);
     }));
 });
 
@@ -35,12 +40,11 @@ exports.add = ((req, res) => {
     body:   req.body.body
   });
 
-  console.log(`POST /posts/`);
-  console.log(req.body);
+  // console.log(req.body);
   post.save(((err, post) => {
     sendError(500, err);
 
-    res.status(200).jsonp(post);
+    sendResponse(res, 200, post);
   }));
 });
 
@@ -53,17 +57,22 @@ exports.update = ((req, res) => {
 
 		post.save(((err) => {
 			sendError(500, err);
-      res.status(200).jsonp(post);
+
+      sendResponse(res, 200, post);
 		}));
 	}));
 });
 
 //DELETE - Delete a Post with specified ID
 exports.delete = ((req, res) => {
-	PostsModel.findById(req.params.id, ((err, post) => {
-		post.remove(((err) => {
-			sendError(500, err);
-      res.status(200);
-		}));
+	PostsModel.findByIdAndRemove(req.params.id, ((err, post) => {
+		sendError(500, err);
+
+    if (null == post) {
+      return sendResponse(res, 404, post);
+      console.log(`No exist  /posts/${req.params.id}`);
+    }
+
+    sendResponse(res, 200, post);
 	}));
 });
