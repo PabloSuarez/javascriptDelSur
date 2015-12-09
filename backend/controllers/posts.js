@@ -17,7 +17,7 @@ exports.findAll = ((req, res) => {
     PostsModel.find((err, posts) => {
       sendError(res, 500, err);
 
-      sendResponse(res, 200, posts);
+      sendResponse(res, 200, {posts:posts});
     });
 });
 

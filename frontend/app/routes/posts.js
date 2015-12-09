@@ -7,14 +7,9 @@ export default Ember.Route.extend({
     controller.set('title', `${Ember.ENV.TITLE} All Post`);
   },
 
-  model: function (){
-    this.store.find('posts', 1).then(function(post) {
-
-    });
-
-    // return Ember.RSVP.hash({
-    //   posts: posts
-    // });
-  }
+  model: function() {
+    console.info('logeo');
+		return this.store.findAll('posts');
+	}
 
 });
