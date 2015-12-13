@@ -8,8 +8,7 @@ export default Ember.Route.extend({
   },
 
   model: function() {
-    console.info('logeo');
-		return this.store.findAll('posts');
+		return this.store.findAll('post');
 	}
 
 });

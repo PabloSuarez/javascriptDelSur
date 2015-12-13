@@ -14,21 +14,20 @@ let sendResponse = ((res, code, data) => {
 
 //GET - Return all Posts in the DB
 exports.findAll = ((req, res) => {
-    PostsModel.find((err, posts) => {
-      sendError(res, 500, err);
+  PostsModel.find((err, posts) => {
+    sendError(res, 500, err);
 
-      sendResponse(res, 200, {posts:posts});
-    });
+    sendResponse(res, 200, {post:posts});
+  });
 });
 
 //GET - Return Post
 exports.findById = ((req, res) => {
-    PostsModel.findById(req.params.id, ((err, post) => {
-      sendError(res, 500, err);
+  PostsModel.findById(req.params.id, ((err, post) => {
+    sendError(res, 500, err);
 
-      // console.log(`GET /posts/${req.params.id}`);
-      sendResponse(res, 200, post);
-    }));
+    sendResponse(res, 200, post);
+  }));
 });
 
 
@@ -40,7 +39,6 @@ exports.add = ((req, res) => {
     body:   req.body.body
   });
 
-  // console.log(req.body);
   post.save(((err, post) => {
     sendError(res, 500, err);
 
