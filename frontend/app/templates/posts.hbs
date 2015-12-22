@@ -1,10 +1,31 @@
-<h1 class="container-title">Posts /</h1>
+<h1 class="container-title">Posts</h1>
 
-{{#each model as |post|}}
-  <h4>{{post.title}}</h4>
-{{/each}}
+<div>
+  <div class="form-post-title">
+    <label for="post-title">Title:</label>
+    {{input type="text" value=postTitle name="post-title"}}
+
+    <label for="post-body">Body:</label>
+    {{textarea value=postBody name="post-body" placeholder="" class="" }}
+
+    <button {{action 'save'}} type="button" name="button">Save</button>
+  </div>
+</div>
+
+<hr/>
 
 <div class="posts">
+  {{#each model as |post|}}
+    <div class="column">
+      <div class="posts-item">
+        <h2>{{post.title}}</h2>
+        <h4>{{post.body}}</h4>
+      </div>
+    </div>
+  {{/each}}
+</div>
+
+{{!-- <div class="posts">
   <div class="column">
     <div class="posts-item">1</div>
     <div class="posts-item chico">2</div>
@@ -65,4 +86,4 @@
     <div class="posts-item">12</div>
     <div class="posts-iteme">13</div>
   </div>
-</div>
+</div> --}}
