@@ -6,8 +6,10 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  this.route('contact');
   this.route('posts');
+  this.route('home', {
+    path: '/hello'
+  });
 });
 
 export default Router;

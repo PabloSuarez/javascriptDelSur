@@ -15,9 +15,7 @@ export default Ember.Route.extend({
         body: _body,
         subject: _subject
       });
-      post.save().then((data) => {
-        console.log(data);
-      });
+      post.save();
     },
   }
 });

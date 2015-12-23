@@ -4,7 +4,7 @@ export default Ember.Route.extend({
 
   setupController: function (controller, model){
     controller.set('model', model);
-    controller.set('title', `${Ember.ENV.TITLE} All Post`);
+    document.title = `All Post ${Ember.ENV.TITLE}`;
   },
 
   model: function() {

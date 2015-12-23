@@ -1,32 +1,17 @@
 @import 'bower_components/nib'
-
+//
 @import '_variables'
-@import 'templates/*'
-@import 'components/*'
-
-
-// general definitions
-* {
-  box-sizing border-box
-}
-
-body
-  margin 0
-  padding 0
-  background url('/assets/images/bg.jpg')
-  background-color black
-  color rgba(75,108,87,.44)
-  font-family sans-serif
-
-
-.container
-  margin 2vh 2vw
-  background-color rgba(207,207,207,.1)
-
-  &-title
-    margin 0
-    padding .5rem
-    text-align center
-    text-transform capitalize
-    color $color-light-gray
-    font-size 1.8rem
+//
+@import '_base'
+//
+//
+@import 'templates/_posts'
+//
+//
+@import 'partials/_form'
+//
+//
+@import 'components/_footer-app'
+@import 'components/_header-app'
+@import 'components/_app-add-post'
+@import 'components/_form-input'

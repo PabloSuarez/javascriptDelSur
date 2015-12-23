@@ -19,7 +19,7 @@ module.exports = function(environment) {
     }
   };
 
-  ENV.EmberENV.TITLE = 'JsDelS - ';
+  ENV.EmberENV.TITLE = 'JsDelS';
 
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
