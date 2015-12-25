@@ -1,24 +1,15 @@
 <div class="app-add-post form">
   <div class="form-section">
-    {{form-input title='Title' value=postTitle name="post-title" class=""}}
+    {{form-input title='Title' value=title name="post-title" class=""}}
   </div>
 
   <div class="form-section">
-    {{form-input title='Subject' value=postSubject name="post-title"}}
+    {{form-input title='Subject' value=subject name="post-title"}}
   </div>
 
   <div class="form-section">
-    {{form-input title='Subject' value=postSubject name="post-title"}}
+    {{form-input area=true title='Content' value=body name="post-body"}}
   </div>
 
-  <div class="form-section">
-    {{form-input title='Subject' value=postSubject name="post-title"}}
-  </div>
-
-  {{!-- <div class="form-section">
-    <label class="form-label">Body</label>
-    {{textarea value=postBody name="post-body" placeholder="Lorem ..."}}
-  </div>
- --}}
-  <button {{action 'action'}} type="button" name="button">Save</button>
+  <button type="button" name="button" {{action 'createPost'}}>Submit</button>
 </div>

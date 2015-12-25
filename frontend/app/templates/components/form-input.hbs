@@ -1,10 +1,19 @@
 <div class="form-input-title">
   <label class="">{{title}}</label>
 </div>
-{{input
-  type='text'
-  value=value
-  name=name
-  placeholder=placeholder
-  class="form-input-text"
-}}
+{{#unless area}}
+  {{input
+    type='text'
+    value=value
+    name=name
+    placeholder=placeholder
+    class="form-input-text"
+  }}
+{{else}}
+  {{textarea
+    value=value
+    name=name
+    placeholder=placeholder
+    class="form-input-textarea"
+  }}
+{{/unless}}

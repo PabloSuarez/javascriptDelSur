@@ -3,19 +3,20 @@ import Ember from 'ember';
 export default Ember.Route.extend({
 
   actions: {
+    createPost (objectPost) {
+      console.log('llegué a createPost in application.js route');
+      console.log(objectPost);
 
-    createPost: function () {
-      let _title    = this.get('postTitle'),
-          _body     = this.get('postBody'),
-          _subject  = this.get('postSubject');
-
-
-      let post = this.store.createRecord('post', {
-        title: _title,
-        body: _body,
-        subject: _subject
-      });
+      let post = this.store.createRecord('post', objectPost);
       post.save();
     },
+
+    deletePost (idPost){
+      console.log('pots a borrar');
+
+      this.store.findRecord('post', idPost).then(((post) => {
+        post.destroyRecord();
+      }));
+    }
   }
 });

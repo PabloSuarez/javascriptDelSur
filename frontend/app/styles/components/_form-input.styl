@@ -2,21 +2,34 @@
   margin-bottom 4vh
 
   &-title,
-  &-text
+  &-text,
+  &-textarea
     width 100%
 
   &-title
-    font-size 1.5rem
+    font-size 1.8rem
     margin-bottom 1vh
     color $color-white
 
-  &-text
-    height 30px
-    background-color transparent
+  &-text,
+  &-textarea
+    font-size 1.4rem
+    min-height 30px
+    padding-bottom .5rem
     border none
     border-bottom solid $color-light-blue 1px
+    color $color-uy
+    background-color transparent
     transition border .8s
 
-    &:focus
+    &:focus,
+    &:hover
       outline 0
       border-color $color-white
+
+  &-textarea
+    transition min-height .3s
+
+    &:focus,
+    &:hover
+      min-height 200px
